@@ -26,7 +26,7 @@
 		<repository>
 			<id>github</id>
 			<name>GitHub jlmorab Apache Maven Packages</name>
-			<url>https://maven.pkg.github.com/jlmorab/api-employee</url>
+			<url>https://maven.pkg.github.com/jlmorab/ms</url>
 		</repository>
 	</distributionManagement>
 
