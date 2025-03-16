@@ -1,2 +1,2 @@
-# db-instance
+# README.md
 Database instance definition
