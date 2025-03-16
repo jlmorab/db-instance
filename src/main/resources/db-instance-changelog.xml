@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="1" author="jlmorab" runInTransaction="false" labels="database" context="sales">
+        <comment>Order tracking</comment>
+        <sql>
+            CREATE DATABASE sales
+        </sql>
+        <rollback>
+        	<![CDATA[
+            SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'sales' AND pid <> pg_backend_pid();
+            DROP DATABASE IF EXISTS sales;
+            ]]>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
