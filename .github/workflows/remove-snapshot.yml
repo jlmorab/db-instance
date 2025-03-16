@@ -42,16 +42,15 @@ jobs:
                 git commit -m "Updated version" || echo "No changes to commit"
                 git push origin release
 
-            - name: Create PR a master
+            - name: Create PR to master
               id: create_pr
-              uses: peter-evans/create-pull-request@v6
-              with:
-                title: "Merge pull request from ${{ github.repository_owner }}/release"
-                commit-message: Updated version
-                body: "Release v${{ env.VERSION }}"
-                base: master
-                branch: release
-                labels: release, automated
+              run: |
+                gh pr create --base master --head release \
+                  --title "Merge pull request from ${{ github.repository_owner }}/release" \
+                  --body "Release v${{ env.VERSION }}" \
+                  --label release,automated
+              env:
+                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Get PR number
               id: pr_number
