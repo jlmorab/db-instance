@@ -4,19 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
 
-    <changeSet id="1" author="jlmorab" runInTransaction="false" labels="database" context="commercial">
-        <comment>Commercial tracking</comment>
-        <sql>
-            CREATE DATABASE commercial
-        </sql>
-        <rollback>
-        	<![CDATA[
-            SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'commercial' AND pid <> pg_backend_pid();
-            DROP DATABASE IF EXISTS commercial;
-            ]]>
-        </rollback>
-    </changeSet>
-    <changeSet id="2" author="jlmorab" labels="table" context="global">
+    <changeSet id="1" author="jlmorab" labels="table" context="global">
         <comment>Authorized users for schemes</comment>
         <sql>
             create table public.user_allowed(
@@ -34,7 +22,7 @@
             ]]>
         </rollback>
     </changeSet>
-    <changeSet id="3" author="jlmorab" runInTransaction="false" labels="function" context="global">
+    <changeSet id="2" author="jlmorab" runInTransaction="false" labels="function" context="global">
         <comment>Function to create user, grant default privileges in existing schemes</comment>
         <sqlFile path="scripts/003_sql_fn_create_user.sql" relativeToChangelogFile="true" endDelimiter="\$$;" />
         <rollback>
@@ -43,7 +31,7 @@
             ]]>
         </rollback>
     </changeSet>
-    <changeSet id="4" author="jlmorab" runInTransaction="false" labels="function" context="global">
+    <changeSet id="3" author="jlmorab" runInTransaction="false" labels="function" context="global">
         <comment>Function to grant access when a new schema is created</comment>
         <sqlFile path="scripts/004_sql_grant_privileges_on_new_esquema.sql" relativeToChangelogFile="true" endDelimiter="\$$;" />
         <rollback>
@@ -53,7 +41,7 @@
             ]]>
         </rollback>
     </changeSet>
-    <changeSet id="5" author="jlmorab" runInTransaction="false" labels="role" context="global">
+    <changeSet id="4" author="jlmorab" runInTransaction="false" labels="role" context="global">
         <comment>Create user msusersys</comment>
         <sql>
         	SELECT fn_create_user('msusersys','${DB_PASS}');
@@ -62,6 +50,17 @@
         	<![CDATA[
             DROP OWNED BY msusersys CASCADE;
 			DROP ROLE msusersys;
+            ]]>
+        </rollback>
+    </changeSet>
+    <changeSet id="5" author="jlmorab" runInTransaction="false" labels="schema" context="sales">
+        <comment>Sales tracking</comment>
+        <sql>
+            CREATE SCHEMA sales;
+        </sql>
+        <rollback>
+        	<![CDATA[
+            DROP SCHEMA IF EXISTS sales;
             ]]>
         </rollback>
     </changeSet>
