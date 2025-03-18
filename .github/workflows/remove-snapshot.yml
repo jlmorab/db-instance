@@ -50,7 +50,7 @@ jobs:
                   --body "Release v${{ env.VERSION }}" \
                   --label release,automated
               env:
-                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                GH_TOKEN: ${{ secrets.PR_TOKEN }}
 
             - name: Get PR number
               id: pr_number
