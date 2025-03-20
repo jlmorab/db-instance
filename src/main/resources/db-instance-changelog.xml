@@ -53,15 +53,4 @@
             ]]>
         </rollback>
     </changeSet>
-    <changeSet id="5" author="jlmorab" runInTransaction="false" labels="schema" context="sales">
-        <comment>Sales tracking</comment>
-        <sql>
-            CREATE SCHEMA sales;
-        </sql>
-        <rollback>
-        	<![CDATA[
-            DROP SCHEMA IF EXISTS sales;
-            ]]>
-        </rollback>
-    </changeSet>
 </databaseChangeLog>

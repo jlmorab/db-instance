@@ -6,7 +6,7 @@
 
 	<groupId>com.jlmorab.ms.data</groupId>
 	<artifactId>db-instance</artifactId>
-	<version>0.1.1</version>
+	<version>0.1.2-SNAPSHOT</version>
 	<name>db-instance</name>
 	<description>Database instance definition</description>
 
