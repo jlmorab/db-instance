@@ -11,7 +11,7 @@
 	</parent>
 	
 	<artifactId>db-instance</artifactId>
-	<version>0.2.1-SNAPSHOT</version>
+	<version>0.2.1</version>
 	<name>db-instance</name>
 	<description>Database instance definition</description>
 
