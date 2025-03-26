@@ -30,10 +30,20 @@ jobs:
                 server-username: GITHUB_ACTOR
                 server-password: GITHUB_TOKEN
 
+            - name: Configure Maven settings
+              uses: s4u/maven-settings-action@v2.8.0
+              with:
+                servers: |
+                  [{
+                    "id": "github",
+                    "username": "${{ github.actor }}",
+                    "password": "${{ secrets.GITHUB_TOKEN }}"
+                  }]
+
             - name: Remove SNAPSHOT from pom.xml file
               run: mvn versions:set -DremoveSnapshot -DgenerateBackupPoms=false
               env:
-                GH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+                GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
                     
             - name: Get project version
               id: version
