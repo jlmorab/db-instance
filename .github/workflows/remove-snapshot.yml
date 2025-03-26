@@ -28,9 +28,11 @@ jobs:
                 cache: maven
                 server-id: github
                 server-username: GITHUB_ACTOR
-                server-password: GITHUB_TOKEN
+                server-password: ${{ secrets.PUBLISH_TOKEN }}
 
             - name: Remove SNAPSHOT from pom.xml file
+              env:
+                GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
               run: mvn versions:set -DremoveSnapshot -DgenerateBackupPoms=false
                     
             - name: Get project version
