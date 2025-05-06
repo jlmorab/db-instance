@@ -37,9 +37,14 @@
 	
 	<repositories>
 		<repository>
-			<id>github</id>
+			<id>github-ms.data</id>
 			<name>GitHub jlmorab - Apache Maven Packages</name>
 			<url>https://maven.pkg.github.com/jlmorab/ms.data</url>
+		</repository>
+		<repository>
+			<id>github-ms</id>
+			<name>GitHub jlmorab - Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/jlmorab/ms</url>
 		</repository>
 	</repositories>
 	
